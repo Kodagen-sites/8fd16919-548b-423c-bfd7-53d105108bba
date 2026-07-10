@@ -1,0 +1,29 @@
+[
+  { "slot": "section-hero-poster", "keyword": "artisan bakery sourdough golden hour", "orientation": "landscape" },
+  { "slot": "section-about", "keyword": "baker kneading dough hands flour", "orientation": "landscape" },
+  { "slot": "section-story", "keyword": "artisan bakery interior warm wood", "orientation": "landscape" },
+  { "slot": "section-showcase", "keyword": "bakery display pastries croissants shelf", "orientation": "landscape" },
+  { "slot": "section-cta", "keyword": "fresh bread loaves rustic table spread", "orientation": "landscape" },
+  { "slot": "section-founder", "keyword": "female baker portrait apron bakery", "orientation": "portrait" },
+
+  { "slot": "service-sourdough", "keyword": "rustic sourdough loaf scored crust", "orientation": "portrait" },
+  { "slot": "service-pastries", "keyword": "buttery croissant pastry flaky", "orientation": "portrait" },
+  { "slot": "service-cakes", "keyword": "elegant celebration layer cake", "orientation": "portrait" },
+  { "slot": "service-cookies", "keyword": "chocolate chip cookies stack", "orientation": "portrait" },
+  { "slot": "service-rolls", "keyword": "cinnamon rolls glazed tray", "orientation": "portrait" },
+  { "slot": "service-giftbox", "keyword": "bakery gift box assorted pastries", "orientation": "portrait" },
+
+  { "slot": "product-sourdough", "keyword": "sourdough bread loaf artisan", "orientation": "squarish" },
+  { "slot": "product-croissant", "keyword": "golden butter croissant", "orientation": "squarish" },
+  { "slot": "product-cake", "keyword": "celebration cake frosting", "orientation": "squarish" },
+  { "slot": "product-cookies", "keyword": "cookie box assorted", "orientation": "squarish" },
+  { "slot": "product-rolls", "keyword": "cinnamon roll glazed", "orientation": "squarish" },
+  { "slot": "product-giftbox", "keyword": "artisan bakery gift hamper", "orientation": "squarish" },
+
+  { "slot": "work-1", "keyword": "wedding tiered cake elegant", "orientation": "portrait" },
+  { "slot": "work-2", "keyword": "birthday cake candles celebration", "orientation": "landscape" },
+  { "slot": "work-3", "keyword": "artisan bread basket assorted", "orientation": "portrait" },
+  { "slot": "work-4", "keyword": "pastry platter event catering", "orientation": "landscape" },
+  { "slot": "work-5", "keyword": "cupcakes dessert table party", "orientation": "portrait" },
+  { "slot": "work-6", "keyword": "bakery cafe table coffee pastry", "orientation": "landscape" }
+]

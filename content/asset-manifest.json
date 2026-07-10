@@ -1,0 +1,36 @@
+{
+  "bucket": "site-assets",
+  "projectId": "8fd16919-548b-423c-bfd7-53d105108bba",
+  "ref": "",
+  "images": {
+    "scene-1-start": "https://kodagen-site-assets.s3.eu-west-1.amazonaws.com/site-assets/8fd16919-548b-423c-bfd7-53d105108bba/images/scene-1-start.png",
+    "scene-1-end": "https://kodagen-site-assets.s3.eu-west-1.amazonaws.com/site-assets/8fd16919-548b-423c-bfd7-53d105108bba/images/scene-1-end.png",
+    "section-showcase": "https://images.unsplash.com/photo-1548538931-b47653628cdc?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHwyfHxiYWtlcnklMjBkaXNwbGF5JTIwcGFzdHJpZXMlMjBjcm9pc3NhbnRzJTIwc2hlbGZ8ZW58MXwwfHx8MTc4MzY3OTA5M3ww&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "section-about": "https://images.unsplash.com/photo-1652283319196-9288add2d60c?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHw2fHxiYWtlciUyMGtuZWFkaW5nJTIwZG91Z2glMjBoYW5kcyUyMGZsb3VyfGVufDF8MHx8fDE3ODM2NzkwOTR8MA&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "section-story": "https://images.unsplash.com/photo-1634148726948-c15ccfe5db75?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHw0fHxhcnRpc2FuJTIwYmFrZXJ5JTIwaW50ZXJpb3IlMjB3YXJtJTIwd29vZHxlbnwxfDB8fHwxNzgzNjc5MDk0fDA&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "section-hero-poster": "https://images.unsplash.com/photo-1627308593341-d886acdc06a2?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHw1fHxhcnRpc2FuJTIwYmFrZXJ5JTIwc291cmRvdWdoJTIwZ29sZGVuJTIwaG91cnxlbnwxfDB8fHwxNzgzNjc5MDk0fDA&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "section-cta": "https://images.unsplash.com/photo-1725297952102-ab28892a31ab?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHw3fHxmcmVzaCUyMGJyZWFkJTIwbG9hdmVzJTIwcnVzdGljJTIwdGFibGUlMjBzcHJlYWR8ZW58MXwwfHx8MTc4MzY3OTA5NHww&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "section-founder": "https://images.unsplash.com/photo-1732565674273-44e3ba2823bc?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHwxfHxmZW1hbGUlMjBiYWtlciUyMHBvcnRyYWl0JTIwYXByb24lMjBiYWtlcnl8ZW58MXwxfHx8MTc4MzY3OTA5NXww&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "service-cookies": "https://images.unsplash.com/photo-1738101840141-59f84501bdd8?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHw0fHxjaG9jb2xhdGUlMjBjaGlwJTIwY29va2llcyUyMHN0YWNrfGVufDF8MXx8fDE3ODM2NzkwOTV8MA&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "service-cakes": "https://images.unsplash.com/photo-1617922784605-041e1e1a5d8e?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHwxMHx8ZWxlZ2FudCUyMGNlbGVicmF0aW9uJTIwbGF5ZXIlMjBjYWtlfGVufDF8MXx8fDE3ODM2NzkwOTV8MA&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "service-sourdough": "https://images.unsplash.com/photo-1591458736923-c06a260e3412?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHw1fHxydXN0aWMlMjBzb3VyZG91Z2glMjBsb2FmJTIwc2NvcmVkJTIwY3J1c3R8ZW58MXwxfHx8MTc4MzY3OTA5NXww&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "service-pastries": "https://images.unsplash.com/photo-1586657263857-346c4b712ff5?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHw2fHxidXR0ZXJ5JTIwY3JvaXNzYW50JTIwcGFzdHJ5JTIwZmxha3l8ZW58MXwxfHx8MTc4MzY3OTA5NXww&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "product-cake": "https://images.unsplash.com/photo-1766186930325-2b3303930a13?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHw1fHxjZWxlYnJhdGlvbiUyMGNha2UlMjBmcm9zdGluZ3xlbnwxfDJ8fHwxNzgzNjc5MDk2fDA&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "product-sourdough": "https://images.unsplash.com/photo-1649255703889-75e888405a21?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHw3fHxzb3VyZG91Z2glMjBicmVhZCUyMGxvYWYlMjBhcnRpc2FufGVufDF8Mnx8fDE3ODM2NzkwOTZ8MA&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "service-giftbox": "https://images.unsplash.com/photo-1640122438487-e5ad5f4b4fe4?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHw0fHxiYWtlcnklMjBnaWZ0JTIwYm94JTIwYXNzb3J0ZWQlMjBwYXN0cmllc3xlbnwxfDF8fHwxNzgzNjc5MDk3fDA&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "service-rolls": "https://images.unsplash.com/photo-1616254819248-1cb9015afb58?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHw3fHxjaW5uYW1vbiUyMHJvbGxzJTIwZ2xhemVkJTIwdHJheXxlbnwxfDF8fHwxNzgzNjc5MDk3fDA&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "work-2": "https://images.unsplash.com/photo-1464349153735-7db50ed83c84?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHwxfHxiaXJ0aGRheSUyMGNha2UlMjBjYW5kbGVzJTIwY2VsZWJyYXRpb258ZW58MXwwfHx8MTc4MzY3OTA5OHww&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "product-cookies": "https://images.unsplash.com/photo-1618887837377-57eace879829?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHw2fHxjb29raWUlMjBib3glMjBhc3NvcnRlZHxlbnwxfDJ8fHwxNzgzNjc5MDk4fDA&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "product-rolls": "https://images.unsplash.com/photo-1635864672237-af4461c9c716?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHw3fHxjaW5uYW1vbiUyMHJvbGwlMjBnbGF6ZWR8ZW58MXwyfHx8MTc4MzY3OTA5OHww&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "work-1": "https://images.unsplash.com/photo-1623428454614-abaf00244e52?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHwyfHx3ZWRkaW5nJTIwdGllcmVkJTIwY2FrZSUyMGVsZWdhbnR8ZW58MXwxfHx8MTc4MzY3OTA5OHww&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "work-4": "https://images.unsplash.com/photo-1683806627608-208157b34241?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHw5fHxwYXN0cnklMjBwbGF0dGVyJTIwZXZlbnQlMjBjYXRlcmluZ3xlbnwxfDB8fHwxNzgzNjc5MDk5fDA&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "work-5": "https://images.unsplash.com/photo-1774660811156-af780020091c?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHw4fHxjdXBjYWtlcyUyMGRlc3NlcnQlMjB0YWJsZSUyMHBhcnR5fGVufDF8MXx8fDE3ODM2NzkwOTl8MA&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "work-6": "https://images.unsplash.com/photo-1775582486414-4c5a08230be0?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHw3fHxiYWtlcnklMjBjYWZlJTIwdGFibGUlMjBjb2ZmZWUlMjBwYXN0cnl8ZW58MXwwfHx8MTc4MzY3OTA5OXww&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format",
+    "work-3": "https://images.unsplash.com/photo-1520358413332-827169eab913?ixid=M3w5MjY4OTB8MHwxfHNlYXJjaHwxMHx8YXJ0aXNhbiUyMGJyZWFkJTIwYmFza2V0JTIwYXNzb3J0ZWR8ZW58MXwxfHx8MTc4MzY3OTA5OXww&ixlib=rb-4.1.0&w=1920&h=1080&fit=crop&q=80&auto=format"
+  },
+  "videos": {
+    "scene-1": "https://kodagen-site-assets.s3.eu-west-1.amazonaws.com/site-assets/8fd16919-548b-423c-bfd7-53d105108bba/videos/scene-1.mp4"
+  },
+  "frames": {},
+  "updatedAt": "2026-07-10T10:26:32.319Z"
+}
