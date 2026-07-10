@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/content/site-config";
 import { SEOHead } from "@/components/seo/SEOHead";
+import SiteChrome from "@/components/SiteChrome";
 
 const company = siteConfig.company.name;
 const email = siteConfig.company.email;
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
+    <SiteChrome>
     <main className="mx-auto max-w-3xl px-5 pb-24 pt-32 md:px-8 md:pt-40 text-white">
       <SEOHead title={`Terms & Conditions — ${company}`} description={`Terms for using ${company}.`} path="/terms" noindex />
       <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-primary">Legal</p>
@@ -118,5 +120,6 @@ export default function TermsPage() {
         </div>
       </div>
     </main>
+    </SiteChrome>
   );
 }

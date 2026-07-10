@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/content/site-config";
 import { SEOHead } from "@/components/seo/SEOHead";
+import SiteChrome from "@/components/SiteChrome";
 
 const company = siteConfig.company.name;
 const email = siteConfig.company.email;
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
+    <SiteChrome>
     <main className="mx-auto max-w-3xl px-5 pb-24 pt-32 md:px-8 md:pt-40 text-white">
       <SEOHead title={`Privacy Policy — ${company}`} description={`How ${company} handles your data.`} path="/privacy" noindex />
       <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-primary">Legal</p>
@@ -106,5 +108,6 @@ export default function PrivacyPolicyPage() {
         </div>
       </div>
     </main>
+    </SiteChrome>
   );
 }

@@ -2,6 +2,7 @@ import VideoHomepage from "@/components/VideoHomepage";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { siteConfig } from "@/content/site-config";
 import { localBusinessSchema, organizationSchema, websiteSchema } from "@/lib/seo/structured-data";
+import SiteChrome from "@/components/SiteChrome";
 
 const brand = {
   ...siteConfig.company,
@@ -13,7 +14,7 @@ const brand = {
 export default function HomePage() {
   const sd = siteConfig.seo.structuredData;
   return (
-    <>
+    <SiteChrome>
       <SEOHead
         path="/"
         jsonLd={[
@@ -31,6 +32,6 @@ export default function HomePage() {
         ]}
       />
       <VideoHomepage />
-    </>
+    </SiteChrome>
   );
 }

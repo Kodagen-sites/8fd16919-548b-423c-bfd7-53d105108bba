@@ -6,6 +6,7 @@ import { SEOHead } from "@/components/seo/SEOHead";
 import { breadcrumbSchema, productSchema } from "@/lib/seo/structured-data";
 import { AddToCart } from "@/components/cart/AddToCart";
 import { TextReveal, FadeUp, StaggerChildren, StickyScrollSection, ImageRevealMask } from "@/components/motion";
+import SiteChrome from "@/components/SiteChrome";
 
 export function generateStaticParams() {
   return siteConfig.services.map((s) => ({ slug: s.slug }));
@@ -35,6 +36,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const priceMajor = (service.priceCents ?? 0) / 100;
 
   return (
+    <SiteChrome>
     <main className="min-h-screen bg-bg pt-32 pb-24 px-6">
       <SEOHead
         title={`${service.name} — ${siteConfig.company.name}`}
@@ -195,5 +197,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </FadeUp>
       </div>
     </main>
+    </SiteChrome>
   );
 }

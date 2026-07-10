@@ -3,6 +3,7 @@ import { siteConfig } from "@/content/site-config";
 import { asset } from "@/lib/assets";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { breadcrumbSchema } from "@/lib/seo/structured-data";
+import SiteChrome from "@/components/SiteChrome";
 import {
   TextReveal,
   FadeUp,
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
+    <SiteChrome>
     <main className="min-h-screen bg-bg pt-32 pb-24 px-6">
       <SEOHead
         title={`About — ${siteConfig.company.name}`}
@@ -133,5 +135,6 @@ export default function AboutPage() {
         </FadeUp>
       </div>
     </main>
+    </SiteChrome>
   );
 }

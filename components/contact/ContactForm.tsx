@@ -5,17 +5,56 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import { siteConfig } from "@/content/site-config";
 import { TextReveal, FadeUp, StaggerChildren, MagneticButton } from "@/components/motion";
 
-export function ContactForm() {
+export function ContactForm({
+  contactEmail,
+  contactPhone,
+  contactLocation,
+}: {
+  contactEmail?: string;
+  contactPhone?: string;
+  contactLocation?: string;
+} = {}) {
+  const email = contactEmail || siteConfig.company.email;
+  const phone = contactPhone || siteConfig.company.phone;
+  const location = contactLocation || siteConfig.company.location;
+
   const [formData, setFormData] = useState({ name: "", email: "", occasion: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (sending) return;
+    setSending(true);
+    const message = formData.occasion
+      ? `Occasion: ${formData.occasion}\n\n${formData.message}`
+      : formData.message;
+    try {
+      const res = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          slug: siteConfig.slug,
+          name: formData.name,
+          email: formData.email,
+          message,
+        }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+        return;
+      }
+    } catch {
+      /* fall through to mailto */
+    } finally {
+      setSending(false);
+    }
+    // Graceful fallback when the backend is unreachable.
     const subject = encodeURIComponent(`Bakery enquiry from ${formData.name}`);
     const body = encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\nOccasion: ${formData.occasion}\n\n${formData.message}`
     );
-    window.location.href = `mailto:${siteConfig.company.email}?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
     setSubmitted(true);
   };
 
@@ -102,7 +141,7 @@ export function ContactForm() {
                     form?.requestSubmit();
                   }}
                 >
-                  {submitted ? "Email opened — send when ready" : "Send enquiry →"}
+                  {submitted ? "Thanks — we'll be in touch" : sending ? "Sending…" : "Send enquiry →"}
                 </MagneticButton>
 
                 <p className="font-mono text-[10px] text-white/40 text-center">
@@ -124,19 +163,19 @@ export function ContactForm() {
                 <ul className="space-y-4">
                   <li className="flex items-start gap-3">
                     <Mail size={16} className="text-primary mt-1" />
-                    <a href={`mailto:${siteConfig.company.email}`} className="text-white hover:text-primary text-sm">
-                      {siteConfig.company.email}
+                    <a href={`mailto:${email}`} className="text-white hover:text-primary text-sm">
+                      {email}
                     </a>
                   </li>
                   <li className="flex items-start gap-3">
                     <Phone size={16} className="text-primary mt-1" />
-                    <a href={`tel:${siteConfig.company.phone}`} className="text-white hover:text-primary text-sm">
-                      {siteConfig.company.phone}
+                    <a href={`tel:${phone}`} className="text-white hover:text-primary text-sm">
+                      {phone}
                     </a>
                   </li>
                   <li className="flex items-start gap-3">
                     <MapPin size={16} className="text-primary mt-1" />
-                    <span className="text-white text-sm">{siteConfig.company.location}</span>
+                    <span className="text-white text-sm">{location}</span>
                   </li>
                 </ul>
               </div>

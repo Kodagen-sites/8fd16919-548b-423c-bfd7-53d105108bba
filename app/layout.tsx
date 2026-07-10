@@ -2,13 +2,6 @@ import type { Metadata } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/content/site-config";
-import Header from "@/components/headers/Header";
-import Footer from "@/components/Footer";
-import { CartProvider } from "@/components/cart/CartContext";
-import { CartFlow } from "@/components/cart/CartFlow";
-import { FilmGrain, Vignette, ScrollProgress } from "@/components/motion";
-import { CookieConsent } from "@/components/CookieConsent";
-import EditorBridge from "@/components/__kodagen/EditorBridge";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -56,17 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang={siteConfig.seo.htmlLang} className={`${fraunces.variable} ${inter.variable} ${jetbrains.variable}`}>
       <body className="min-h-screen bg-bg text-white antialiased overflow-x-hidden">
-        <CartProvider brandSlug={siteConfig.slug} currency={siteConfig.currency}>
-          <ScrollProgress />
-          <Header />
-          <CartFlow />
-          <main>{children}</main>
-          <Footer />
-        </CartProvider>
-        <Vignette />
-        <FilmGrain opacity={0.04} />
-        <CookieConsent />
-        <EditorBridge />
+        {children}
       </body>
     </html>
   );

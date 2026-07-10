@@ -4,6 +4,7 @@ import { siteConfig } from "@/content/site-config";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { breadcrumbSchema } from "@/lib/seo/structured-data";
 import { TextReveal, FadeUp, StaggerChildren, CardTiltLayer, ImageRevealMask, MagneticButton } from "@/components/motion";
+import SiteChrome from "@/components/SiteChrome";
 
 export const metadata: Metadata = {
   title: "Our Bakes",
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 
 export default function WorkPage() {
   return (
+    <SiteChrome>
     <main className="min-h-screen bg-bg pt-32 pb-24 px-6">
       <SEOHead
         title={`Our Bakes — ${siteConfig.company.name}`}
@@ -85,5 +87,6 @@ export default function WorkPage() {
         </FadeUp>
       </div>
     </main>
+    </SiteChrome>
   );
 }
