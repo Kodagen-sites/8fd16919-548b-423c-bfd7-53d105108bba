@@ -2,16 +2,15 @@
 
 import { useActionState, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Eye, EyeOff, Lock, Mail, ArrowRight, AlertCircle, Sparkles, CheckCircle } from "lucide-react";
+import { Eye, EyeOff, Lock, Mail, ArrowRight, AlertCircle, CheckCircle } from "lucide-react";
 import { siteConfig } from "@/content/site-config";
 import {
   signInWithPassword,
-  signInWithMagicLink,
   sendPasswordReset,
   type ActionResult,
 } from "./actions";
 
-type Mode = "password" | "magic" | "forgot";
+type Mode = "password" | "forgot";
 
 const config = {
   businessName: siteConfig.company.name,
@@ -26,16 +25,12 @@ const config = {
 };
 
 export default function AdminLoginPage() {
-  const [mode, setMode] = useState<Mode>("magic");
+  const [mode, setMode] = useState<Mode>("password");
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
 
   const [pwState, pwAction, pwPending] = useActionState<ActionResult | null, FormData>(
     signInWithPassword,
-    null,
-  );
-  const [magicState, magicAction, magicPending] = useActionState<ActionResult | null, FormData>(
-    signInWithMagicLink,
     null,
   );
   const [resetState, resetAction, resetPending] = useActionState<ActionResult | null, FormData>(
@@ -44,9 +39,8 @@ export default function AdminLoginPage() {
   );
 
   const current =
-    mode === "password" ? { state: pwState, pending: pwPending } :
-    mode === "magic"    ? { state: magicState, pending: magicPending } :
-                          { state: resetState, pending: resetPending };
+    mode === "password" ? { state: pwState, pending: pwPending }
+                        : { state: resetState, pending: resetPending };
 
   return (
     <div
@@ -109,32 +103,9 @@ export default function AdminLoginPage() {
                 Welcome back
               </h1>
               <p className="text-sm text-gray-500 mb-6">
-                {mode === "magic"
-                  ? "Sign in with a one-time link sent to your email."
-                  : "Sign in to manage your website."}
+                Sign in to manage your website.
               </p>
 
-              {/* Mode toggle */}
-              <div className="flex gap-1 p-1 mb-6 rounded-xl bg-gray-100">
-                <button
-                  type="button"
-                  onClick={() => setMode("magic")}
-                  className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold transition ${
-                    mode === "magic" ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"
-                  }`}
-                >
-                  <Sparkles className="w-3.5 h-3.5" /> Magic link
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setMode("password")}
-                  className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold transition ${
-                    mode === "password" ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"
-                  }`}
-                >
-                  <Lock className="w-3.5 h-3.5" /> Password
-                </button>
-              </div>
 
               {/* Status messages */}
               {current.state && !current.state.ok && (
@@ -158,45 +129,6 @@ export default function AdminLoginPage() {
                 </motion.div>
               )}
 
-              {/* Magic link form */}
-              {mode === "magic" && (
-                <form action={magicAction} className="space-y-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Email</label>
-                    <div className="relative">
-                      <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                      <input
-                        name="email"
-                        type="email"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="admin@yourbusiness.com"
-                        className="w-full pl-10 pr-4 py-3.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:ring-2 text-sm transition-all"
-                        style={{ "--tw-ring-color": "var(--color-accent)" } as React.CSSProperties}
-                      />
-                    </div>
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={magicPending}
-                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-white font-bold text-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-lg disabled:opacity-60 disabled:hover:scale-100"
-                    style={{ background: `linear-gradient(135deg, var(--color-accent), var(--color-primary))` }}
-                  >
-                    {magicPending ? (
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    ) : (
-                      <>
-                        Email me a sign-in link
-                        <ArrowRight className="w-4 h-4" />
-                      </>
-                    )}
-                  </button>
-                  <p className="text-[11px] text-gray-400 text-center">
-                    No password, no risk of leaks. Link expires in 1 hour.
-                  </p>
-                </form>
-              )}
 
               {/* Password form */}
               {mode === "password" && (
@@ -316,7 +248,7 @@ export default function AdminLoginPage() {
 
                 <button
                   type="button"
-                  onClick={() => setMode("magic")}
+                  onClick={() => setMode("password")}
                   className="w-full text-center text-sm text-gray-500 hover:text-gray-700 transition-colors"
                 >
                   Back to login

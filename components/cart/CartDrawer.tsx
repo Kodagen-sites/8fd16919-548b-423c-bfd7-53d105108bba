@@ -41,20 +41,20 @@ export function CartDrawer() {
         role="dialog"
         aria-modal="true"
         aria-label="Shopping cart"
-        className={`fixed right-0 top-0 z-[70] h-full w-full max-w-md bg-parchment shadow-2xl transform transition-transform duration-300 ease-out flex flex-col ${
+        className={`fixed right-0 top-0 z-[70] h-full w-full max-w-md bg-[var(--color-card,var(--color-bg,#141416))] shadow-2xl transform transition-transform duration-300 ease-out flex flex-col ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         {/* Header */}
-        <header className="flex items-center justify-between px-6 py-5 border-b border-stone/10">
+        <header className="flex items-center justify-between px-6 py-5 border-b border-[var(--color-border,rgba(255,255,255,0.14))]">
           <div className="flex items-center gap-3">
-            <ShoppingBag size={18} className="text-stone/60" />
-            <h2 className="font-display text-lg text-stone">Your cart</h2>
+            <ShoppingBag size={18} className="text-[var(--color-text-secondary,rgba(244,244,245,0.65))]" />
+            <h2 className="font-display text-lg text-[var(--color-text,#f4f4f5)]">Your cart</h2>
           </div>
           <button
             type="button"
             onClick={closeDrawer}
-            className="p-2 -m-2 text-stone/50 hover:text-stone transition-colors"
+            className="p-2 -m-2 text-[var(--color-text-secondary,rgba(244,244,245,0.65))] hover:text-[var(--color-text,#f4f4f5)] transition-colors"
             aria-label="Close cart"
           >
             <X size={20} />
@@ -66,7 +66,7 @@ export function CartDrawer() {
           {items.length === 0 ? (
             <EmptyState onClose={closeDrawer} />
           ) : (
-            <ul className="divide-y divide-stone/10">
+            <ul className="divide-y divide-[var(--color-border,rgba(255,255,255,0.14))]">
               {items.map((item) => (
                 <li key={`${item.id}::${item.variant ?? ''}`} className="flex gap-4 py-5">
                   {/* Thumbnail */}
@@ -74,7 +74,7 @@ export function CartDrawer() {
                     <Link
                       href={item.href ?? '#'}
                       onClick={closeDrawer}
-                      className="block w-20 h-24 flex-shrink-0 overflow-hidden rounded-sm bg-linen"
+                      className="block w-20 h-24 flex-shrink-0 overflow-hidden rounded-sm bg-[rgba(255,255,255,0.06)]"
                     >
                       <img
                         src={item.imageUrl}
@@ -84,7 +84,7 @@ export function CartDrawer() {
                       />
                     </Link>
                   ) : (
-                    <div className="w-20 h-24 flex-shrink-0 rounded-sm bg-linen" aria-hidden />
+                    <div className="w-20 h-24 flex-shrink-0 rounded-sm bg-[rgba(255,255,255,0.06)]" aria-hidden />
                   )}
 
                   {/* Details */}
@@ -94,16 +94,16 @@ export function CartDrawer() {
                         <Link
                           href={item.href ?? '#'}
                           onClick={closeDrawer}
-                          className="text-sm font-medium text-stone leading-snug hover:text-bark transition-colors"
+                          className="text-sm font-medium text-[var(--color-text,#f4f4f5)] leading-snug hover:text-[var(--color-primary,#c9a876)] transition-colors"
                         >
                           {item.name}
                         </Link>
-                        <p className="text-sm text-stone whitespace-nowrap">
+                        <p className="text-sm text-[var(--color-text,#f4f4f5)] whitespace-nowrap">
                           {formatPrice(item.priceCents * item.quantity)}
                         </p>
                       </div>
                       {item.variant && (
-                        <p className="text-xs text-stone/50 mt-0.5">{item.variant}</p>
+                        <p className="text-xs text-[var(--color-text-secondary,rgba(244,244,245,0.65))] mt-0.5">{item.variant}</p>
                       )}
                     </div>
 
@@ -116,7 +116,7 @@ export function CartDrawer() {
                       <button
                         type="button"
                         onClick={() => removeItem(item.id, item.variant)}
-                        className="text-xs text-stone/50 hover:text-stone underline-offset-2 hover:underline transition-colors"
+                        className="text-xs text-[var(--color-text-secondary,rgba(244,244,245,0.65))] hover:text-[var(--color-text,#f4f4f5)] underline-offset-2 hover:underline transition-colors"
                       >
                         Remove
                       </button>
@@ -130,24 +130,24 @@ export function CartDrawer() {
 
         {/* Footer / Checkout */}
         {items.length > 0 && (
-          <footer className="border-t border-stone/10 px-6 py-5 space-y-4">
+          <footer className="border-t border-[var(--color-border,rgba(255,255,255,0.14))] px-6 py-5 space-y-4">
             <div className="flex items-baseline justify-between">
-              <p className="text-xs uppercase tracking-widest text-stone/50">Subtotal</p>
-              <p className="text-base font-medium text-stone">{formatPrice(subtotalCents)}</p>
+              <p className="text-xs uppercase tracking-widest text-[var(--color-text-secondary,rgba(244,244,245,0.65))]">Subtotal</p>
+              <p className="text-base font-medium text-[var(--color-text,#f4f4f5)]">{formatPrice(subtotalCents)}</p>
             </div>
-            <p className="text-[11px] text-stone/40">Taxes &amp; shipping calculated at checkout.</p>
+            <p className="text-[11px] text-[var(--color-text-secondary,rgba(244,244,245,0.65))]">Taxes &amp; shipping calculated at checkout.</p>
 
             <Link
               href="/checkout"
               onClick={closeDrawer}
-              className="block w-full text-center bg-stone text-cream py-4 rounded-sm font-medium tracking-wide hover:bg-bark transition-colors"
+              className="block w-full text-center bg-[var(--color-primary,#c9a876)] text-[var(--color-bg,#141416)] py-4 rounded-sm font-medium tracking-wide hover:brightness-110 transition-colors"
             >
               Checkout
             </Link>
             <button
               type="button"
               onClick={closeDrawer}
-              className="block w-full text-center text-sm text-stone/60 hover:text-stone py-1 transition-colors"
+              className="block w-full text-center text-sm text-[var(--color-text-secondary,rgba(244,244,245,0.65))] hover:text-[var(--color-text,#f4f4f5)] py-1 transition-colors"
             >
               Continue browsing
             </button>
@@ -168,20 +168,20 @@ function QuantityStepper({
   onInc: () => void;
 }) {
   return (
-    <div className="inline-flex items-center border border-stone/15 rounded-sm">
+    <div className="inline-flex items-center border border-[var(--color-border,rgba(255,255,255,0.14))] rounded-sm">
       <button
         type="button"
         onClick={onDec}
-        className="w-8 h-8 flex items-center justify-center text-stone/60 hover:text-stone transition-colors"
+        className="w-8 h-8 flex items-center justify-center text-[var(--color-text-secondary,rgba(244,244,245,0.65))] hover:text-[var(--color-text,#f4f4f5)] transition-colors"
         aria-label="Decrease quantity"
       >
         <Minus size={14} />
       </button>
-      <span className="w-8 text-center text-sm text-stone">{value}</span>
+      <span className="w-8 text-center text-sm text-[var(--color-text,#f4f4f5)]">{value}</span>
       <button
         type="button"
         onClick={onInc}
-        className="w-8 h-8 flex items-center justify-center text-stone/60 hover:text-stone transition-colors"
+        className="w-8 h-8 flex items-center justify-center text-[var(--color-text-secondary,rgba(244,244,245,0.65))] hover:text-[var(--color-text,#f4f4f5)] transition-colors"
         aria-label="Increase quantity"
       >
         <Plus size={14} />
@@ -193,14 +193,14 @@ function QuantityStepper({
 function EmptyState({ onClose }: { onClose: () => void }) {
   return (
     <div className="h-full flex flex-col items-center justify-center text-center py-16 gap-4">
-      <div className="w-16 h-16 rounded-full bg-linen flex items-center justify-center">
-        <ShoppingBag size={20} className="text-stone/40" />
+      <div className="w-16 h-16 rounded-full bg-[rgba(255,255,255,0.06)] flex items-center justify-center">
+        <ShoppingBag size={20} className="text-[var(--color-text-secondary,rgba(244,244,245,0.65))]" />
       </div>
-      <p className="text-sm text-stone/60">Your cart is empty.</p>
+      <p className="text-sm text-[var(--color-text-secondary,rgba(244,244,245,0.65))]">Your cart is empty.</p>
       <Link
         href="/shop"
         onClick={onClose}
-        className="text-sm text-stone underline underline-offset-4 hover:text-bark transition-colors"
+        className="text-sm text-[var(--color-text,#f4f4f5)] underline underline-offset-4 hover:text-[var(--color-primary,#c9a876)] transition-colors"
       >
         Browse the collection
       </Link>

@@ -46,10 +46,10 @@ export default function Checkout() {
 
   if (items.length === 0) {
     return (
-      <main className="min-h-screen flex items-center justify-center bg-parchment">
+      <main className="min-h-screen flex items-center justify-center bg-[var(--color-bg,#141416)]">
         <div className="text-center max-w-sm">
-          <p className="text-stone/60 mb-4">Your cart is empty.</p>
-          <Link href="/shop" className="text-stone underline underline-offset-4">
+          <p className="text-[var(--color-text-secondary,rgba(244,244,245,0.65))] mb-4">Your cart is empty.</p>
+          <Link href="/shop" className="text-[var(--color-text,#f4f4f5)] underline underline-offset-4">
             Browse the collection
           </Link>
         </div>
@@ -110,6 +110,29 @@ export default function Checkout() {
         return;
       }
 
+      // Admin builds (NEXT_PUBLIC_DB_MODE set): when the owner has configured
+      // a payment gateway in /admin/integrations, hand the customer to the
+      // hosted payment page. /api/payments/initialize responds 400 when no
+      // provider is configured — fall through to the plain confirmation.
+      if (process.env.NEXT_PUBLIC_DB_MODE) {
+        try {
+          const payEndpoint = apiBaseUrl
+            ? `${apiBaseUrl}/api/payments/initialize`
+            : '/api/payments/initialize';
+          const payRes = await fetch(payEndpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ slug: brandSlug, orderId: data.orderId }),
+          });
+          const pay = (await payRes.json()) as { ok?: boolean; authorization_url?: string };
+          if (pay?.ok && pay.authorization_url) {
+            clear();
+            window.location.href = pay.authorization_url;
+            return;
+          }
+        } catch { /* no gateway / network hiccup — order is still recorded */ }
+      }
+
       // Cache the order client-side so the confirmation page works even when
       // the backend hasn't been wired to Supabase yet — the API's in-memory
       // fallback doesn't survive across serverless function instances.
@@ -128,9 +151,15 @@ export default function Checkout() {
         );
       } catch { /* quota or private-mode — fall back to server fetch */ }
 
-      // Default path: order saved, go to the confirmation page.
+      // Default path: order saved, go to the confirmation page. Admin builds
+      // ship the canonical /order/confirmed server page (payment-verify lane);
+      // scaffold-only builds use the client-side /order-confirmation drop-in.
       clear();
-      router.push(`/order-confirmation?id=${encodeURIComponent(data.orderId)}`);
+      router.push(
+        process.env.NEXT_PUBLIC_DB_MODE
+          ? `/order/confirmed?ref=${encodeURIComponent(data.orderId)}`
+          : `/order-confirmation?id=${encodeURIComponent(data.orderId)}`,
+      );
     } catch (err: any) {
       setError(err?.message ?? 'Could not place the order. Try again.');
     } finally {
@@ -139,13 +168,13 @@ export default function Checkout() {
   }
 
   return (
-    <main className="min-h-screen bg-parchment py-16 lg:py-24">
+    <main className="min-h-screen bg-[var(--color-bg,#141416)] py-16 lg:py-24">
       <div className="container mx-auto px-6 lg:px-12 max-w-5xl">
         <div className="mb-10">
-          <Link href="/shop" className="text-xs uppercase tracking-widest text-stone/50 hover:text-stone">
+          <Link href="/shop" className="text-xs uppercase tracking-widest text-[var(--color-text-secondary,rgba(244,244,245,0.65))] hover:text-[var(--color-text,#f4f4f5)]">
             ← Continue browsing
           </Link>
-          <h1 className="mt-3 font-display font-light text-stone text-3xl lg:text-4xl">Checkout</h1>
+          <h1 className="mt-3 font-display font-light text-[var(--color-text,#f4f4f5)] text-3xl lg:text-4xl">Checkout</h1>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12 lg:gap-20">
@@ -182,34 +211,34 @@ export default function Checkout() {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full bg-stone text-cream py-4 rounded-sm font-medium tracking-wide hover:bg-bark disabled:opacity-60 transition-colors"
+              className="w-full bg-[var(--color-primary,#c9a876)] text-[var(--color-bg,#141416)] py-4 rounded-sm font-medium tracking-wide hover:brightness-110 disabled:opacity-60 transition-colors"
             >
               {submitting ? 'Processing…' : `Place order · ${formatPrice(subtotalCents)}`}
             </button>
           </form>
 
           {/* Order summary */}
-          <aside className="bg-cream/40 rounded-sm p-6 h-fit">
-            <h2 className="text-xs uppercase tracking-widest text-stone/50 mb-5">Order</h2>
+          <aside className="bg-[rgba(255,255,255,0.06)] rounded-sm p-6 h-fit">
+            <h2 className="text-xs uppercase tracking-widest text-[var(--color-text-secondary,rgba(244,244,245,0.65))] mb-5">Order</h2>
             <ul className="space-y-4 mb-6">
               {items.map((i) => (
                 <li key={`${i.id}::${i.variant ?? ''}`} className="flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm text-stone leading-snug">{i.name}</p>
-                    {i.variant && <p className="text-xs text-stone/50 mt-0.5">{i.variant}</p>}
-                    <p className="text-xs text-stone/50 mt-0.5">Qty {i.quantity}</p>
+                    <p className="text-sm text-[var(--color-text,#f4f4f5)] leading-snug">{i.name}</p>
+                    {i.variant && <p className="text-xs text-[var(--color-text-secondary,rgba(244,244,245,0.65))] mt-0.5">{i.variant}</p>}
+                    <p className="text-xs text-[var(--color-text-secondary,rgba(244,244,245,0.65))] mt-0.5">Qty {i.quantity}</p>
                   </div>
-                  <p className="text-sm text-stone whitespace-nowrap">
+                  <p className="text-sm text-[var(--color-text,#f4f4f5)] whitespace-nowrap">
                     {formatPrice(i.priceCents * i.quantity)}
                   </p>
                 </li>
               ))}
             </ul>
-            <div className="border-t border-stone/10 pt-4 flex items-baseline justify-between">
-              <p className="text-xs uppercase tracking-widest text-stone/50">Subtotal</p>
-              <p className="text-base font-medium text-stone">{formatPrice(subtotalCents)}</p>
+            <div className="border-t border-[var(--color-border,rgba(255,255,255,0.14))] pt-4 flex items-baseline justify-between">
+              <p className="text-xs uppercase tracking-widest text-[var(--color-text-secondary,rgba(244,244,245,0.65))]">Subtotal</p>
+              <p className="text-base font-medium text-[var(--color-text,#f4f4f5)]">{formatPrice(subtotalCents)}</p>
             </div>
-            <p className="text-[11px] text-stone/40 mt-2">Taxes &amp; shipping calculated at order review.</p>
+            <p className="text-[11px] text-[var(--color-text-secondary,rgba(244,244,245,0.65))] mt-2">Taxes &amp; shipping calculated at order review.</p>
           </aside>
         </div>
       </div>
@@ -220,7 +249,7 @@ export default function Checkout() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <fieldset className="space-y-4">
-      <legend className="text-xs uppercase tracking-widest text-stone/50">{title}</legend>
+      <legend className="text-xs uppercase tracking-widest text-[var(--color-text-secondary,rgba(244,244,245,0.65))]">{title}</legend>
       {children}
     </fieldset>
   );
@@ -241,15 +270,15 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="block text-xs text-stone/60 mb-1">
-        {label}{required && <span className="text-flax">*</span>}
+      <span className="block text-xs text-[var(--color-text-secondary,rgba(244,244,245,0.65))] mb-1">
+        {label}{required && <span className="text-[var(--color-primary,#c9a876)]">*</span>}
       </span>
       <input
         type={type}
         value={value}
         required={required}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full bg-parchment border border-stone/15 rounded-sm px-3 py-2.5 text-sm text-stone focus:outline-none focus:border-stone/40 transition-colors"
+        className="w-full bg-[rgba(255,255,255,0.06)] border border-[var(--color-border,rgba(255,255,255,0.14))] rounded-sm px-3 py-2.5 text-sm text-[var(--color-text,#f4f4f5)] focus:outline-none focus:border-[var(--color-primary,#c9a876)] transition-colors"
       />
     </label>
   );

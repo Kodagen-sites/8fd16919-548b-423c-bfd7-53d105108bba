@@ -35,27 +35,6 @@ export async function signInWithPassword(
   redirect("/admin");
 }
 
-export async function signInWithMagicLink(
-  _prev: ActionResult | null,
-  formData: FormData,
-): Promise<ActionResult> {
-  const email = String(formData.get("email") ?? "").trim().toLowerCase();
-  if (!email) return { ok: false, error: "Email is required." };
-
-  const supabase = await createClient();
-  const h = await headers();
-  const proto = h.get("x-forwarded-proto") ?? "http";
-  const host = h.get("host") ?? "localhost:3000";
-  const redirectTo = `${proto}://${host}/admin/auth/callback?next=/admin`;
-
-  const { error } = await supabase.auth.signInWithOtp({
-    email,
-    options: { emailRedirectTo: redirectTo },
-  });
-
-  if (error) return { ok: false, error: error.message };
-  return { ok: true, message: `We sent a sign-in link to ${email}. Check your inbox.` };
-}
 
 export async function sendPasswordReset(
   _prev: ActionResult | null,

@@ -24,21 +24,21 @@ export function CartStickyBar() {
   return (
     <div
       id="cart-sticky-bar"
-      className="fixed bottom-0 inset-x-0 z-40 bg-stone text-cream shadow-2xl print:hidden"
+      className="fixed bottom-0 inset-x-0 z-40 bg-[var(--color-primary,#c9a876)] text-[var(--color-bg,#141416)] shadow-2xl print:hidden"
     >
       <Link
         href="/checkout"
         className="container mx-auto max-w-5xl px-4 py-3 flex items-center justify-between gap-3 group"
       >
         <div className="flex items-center gap-3 min-w-0">
-          <span className="relative flex items-center justify-center w-9 h-9 rounded-full bg-cream/10">
+          <span className="relative flex items-center justify-center w-9 h-9 rounded-full bg-[rgba(0,0,0,0.12)]">
             <ShoppingBag size={16} />
-            <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-flax text-stone text-[10px] font-semibold flex items-center justify-center">
+            <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-[var(--color-bg,#141416)] text-[var(--color-primary,#c9a876)] text-[10px] font-semibold flex items-center justify-center">
               {count}
             </span>
           </span>
           <div className="min-w-0">
-            <p className="text-[10px] uppercase tracking-widest text-cream/55">{count} {count === 1 ? "item" : "items"}</p>
+            <p className="text-[10px] uppercase tracking-widest text-[color-mix(in_srgb,var(--color-bg,#141416)_65%,transparent)]">{count} {count === 1 ? "item" : "items"}</p>
             <p className="text-sm font-medium truncate">{formatPrice(subtotalCents)}</p>
           </div>
         </div>
